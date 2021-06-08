@@ -21,6 +21,8 @@ from .model.tag import Tag
 from . import endpoints
 from .two_step_verification.console_verification import ConsoleVerification
 import http.cookiejar
+from django.conf import settings
+
 
 class Instagram:
     HTTP_NOT_FOUND = 404
@@ -69,8 +71,9 @@ class Instagram:
         Instagram.instance_cache = None
 
         if not session_folder:
-            cwd = os.getcwd()
-            session_folder = cwd + os.path.sep + 'sessions' + os.path.sep
+            session_folder = settings.SCRAP_BASE_DIR + os.path.sep + "sessions" + os.path.sep
+            # cwd = os.getcwd()
+            # session_folder = cwd + os.path.sep + 'sessions' + os.path.sep
 
         if isinstance(session_folder, str):
 
